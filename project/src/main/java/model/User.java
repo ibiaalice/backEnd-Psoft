@@ -16,7 +16,7 @@ import lombok.ToString;
 
 @Data
 @Entity
-@Getter @Setter @ToString(exclude="codeUser")
+@Getter @Setter @ToString
 @EqualsAndHashCode(exclude={"firstName", "lastName"})
 public class User {
 	@Id
