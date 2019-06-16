@@ -2,6 +2,7 @@ package controller;
 
 import java.sql.Date;
 
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,6 +21,7 @@ public class LoginController {
 	//@autowired
 	private UserService userService;
 	
+	@PostMapping("/login")
 	public LoginResponse authenticate(@RequestBody User user) throws AuthException {		
 		User authUser = (User) userService.findByEmail(user.getEmail());
 		
