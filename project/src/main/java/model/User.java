@@ -22,6 +22,17 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Getter private String email;
+	@Getter @Setter private String firstName;
+	@Getter @Setter private String lastName;
+	@Setter private String passwd;
+	
+	public User(String firstName, String lastName, String email, String passwd) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.passwd = passwd;
+	}
+
 	public String getFirstName() {
 		return firstName;
 	}
@@ -45,26 +56,10 @@ public class User {
 	public void setPasswd(String passwd) {
 		this.passwd = passwd;
 	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	@Getter @Setter private String firstName;
-	@Getter @Setter private String lastName;
-	@Setter private String passwd;
 	
-	public User(String firstName, String lastName, String email, String passwd) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-		this.passwd = passwd;
-	}
-
 	public String getEmail() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.email;
 	}
 	
-	
+
 }

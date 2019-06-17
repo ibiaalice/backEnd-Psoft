@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import exception.UserExistException;
+import exception.UserNotExistException;
 import model.User;
 import service.UserService;
 
@@ -26,8 +28,7 @@ public class UserController {
 	@ResponseBody
 	public ResponseEntity<User> findById(@PathVariable String email) {
 		if (userService.containsUser(email) == false)
-			System.out.println("Vou fazer aqui ainda alguma coisa");
-		// throw new UserNotExistException("This user does not exist!");
+			throw new UserNotExistException("This user does not exist!");
 
 		User user = (User) userService.findByEmail(email);// findByCodeUser ainda com retorno Object :(
 
@@ -39,8 +40,8 @@ public class UserController {
 	@ResponseBody
 	public ResponseEntity<User> create(@RequestBody User user) {
 		if (userService.containsUser(user.getEmail()))
-			System.out.println("pipipi popopo!");
-		// throw new UserExistException("This user already exist!");
+			throw new UserExistException("This user already exist!");
+		
 		User newUser = userService.create(user);
 
 		return new ResponseEntity<User>(newUser, HttpStatus.CREATED);
