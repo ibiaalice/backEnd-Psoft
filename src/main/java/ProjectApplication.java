@@ -17,7 +17,21 @@ public class ProjectApplication {
 	public FilterRegistrationBean filterJwt(){
 		FilterRegistrationBean filterRb = new FilterRegistrationBean();
 		filterRb.setFilter(new TokenFilter());
-		filterRb.addUrlPatterns("/private");
+		filterRb.addUrlPatterns("/api/private");
+		filterRb.addUrlPatterns("/api/user");
+		filterRb.addUrlPatterns("/api/discipline");
 		return filterRb;
 	}
+	
+	@Bean
+	public FilterRegistrationBean corsFilter() {
+		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+		CorsConfiguration config = new CorsConfiguration().applyPermitDefaultValues();
+		config.addAllowedMethod("*");
+		source.registerCorsConfiguration("/**", config);
+		FilterRegistrationBean bean = new FilterRegistrationBean(new CorsFilter(source));
+		bean.setOrder(0);
+		return bean;
+	}
+	
 }
