@@ -3,7 +3,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
-
+import br.com.ufcg.middlewares.ClienteFilter;
+import br.com.ufcg.middlewares.FornecedorFilter;
+import br.com.ufcg.middlewares.jwt.TokenFilter;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 import controller.TokenFilter;
 
 @SpringBootApplication(scanBasePackages={"com.*", "exceptions.*"})
