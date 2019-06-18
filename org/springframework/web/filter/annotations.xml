@@ -1,0 +1,5 @@
+<root>
+    <item name='org.springframework.web.filter.GenericFilterBean'>
+        <annotation name='java.lang.Deprecated'/>
+    </item>
+</root>
