@@ -17,9 +17,9 @@ public class ProjectApplication {
 	public FilterRegistrationBean filterJwt(){
 		FilterRegistrationBean filterRb = new FilterRegistrationBean();
 		filterRb.setFilter(new TokenFilter());
-		filterRb.addUrlPatterns("/api/private");
-		filterRb.addUrlPatterns("/api/user");
-		filterRb.addUrlPatterns("/api/discipline");
+		filterRb.addUrlPatterns("/private");
+		filterRb.addUrlPatterns("/user");
+		filterRb.addUrlPatterns("/discipline");
 		return filterRb;
 	}
 	
