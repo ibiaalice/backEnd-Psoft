@@ -24,7 +24,7 @@ public class UserController {
 		this.userService = userService;
 	}
 
-	@GetMapping(value = "/{id}")
+	@GetMapping(value = "/{email}")
 	@ResponseBody
 	public ResponseEntity<User> findById(@PathVariable String email) {
 		if (userService.containsUser(email) == false)
