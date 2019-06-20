@@ -52,9 +52,9 @@ public class UserController {
 	@PostMapping(value = "/signup")
 	@ResponseBody
 	public ResponseEntity<UserDTO> create(@RequestBody User user) {
-		if (userService.containsUser(user.getEmail()))
+		if (userService.containsUser(user.getEmail())) {
 			throw new UserExistException("This user already exist!");
-		
+		}
 		User newUser = userService.create(user);
 		UserDTO userDTO = new UserDTO(newUser.getFirstName(),newUser.getLastName(),newUser.getEmail(), "useaimaginacao");
 
