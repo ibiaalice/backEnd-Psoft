@@ -16,10 +16,10 @@ public class UserService {
 	}
 	
 	public User create(User user) {
-		if(containsUser(user)) 
+		if(containsUser(user)) { 
 			System.out.println("ainda vou fazer algo aqui");
 			//throw new UserExistException("there is a registered user with the same data.");
-		
+		}
 		return userDAO.save(user);
 	}
 	
@@ -32,7 +32,7 @@ public class UserService {
 	 * @param email
 	 * @return deveria retornar um User
 	 */
-	public Object findByEmail(String email) {
+	public User findByEmail(String email) {
 		return userDAO.findByEmail(email);
 	}
 	

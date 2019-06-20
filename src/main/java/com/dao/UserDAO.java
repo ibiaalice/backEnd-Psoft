@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserDAO<T, ID extends Serializable> extends JpaRepository< User, String> {
+public interface UserDAO<T, ID extends Serializable> extends JpaRepository<User, String> {
 	User save(User user);
 	
 	/**
