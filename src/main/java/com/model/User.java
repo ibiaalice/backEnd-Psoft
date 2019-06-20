@@ -32,6 +32,9 @@ public class User {
 		this.email = email;
 		this.passwd = passwd;
 	}
+	public User() {
+		
+	}
 
 
 	public String getFirstName() {
