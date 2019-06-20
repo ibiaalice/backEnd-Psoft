@@ -1,10 +1,10 @@
-package service;
+package com.service;
 
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
-import model.User;
-import dao.UserDAO;
+import com.model.User;
+import com.dao.UserDAO;
 
 @Service 
 public class UserService {

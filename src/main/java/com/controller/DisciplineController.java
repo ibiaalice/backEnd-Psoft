@@ -1,4 +1,4 @@
-package controller;
+package com.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import exception.DisciplineNotExistsException;
 import exception.DisciplineNotFoundException;
-import model.Discipline;
-import service.DisciplineService;
+import com.model.*;
+import com.service.DisciplineService;
 
 @RestController
 @RequestMapping({ "/v1/disciplines" })
@@ -48,7 +48,7 @@ public class DisciplineController {
 		return new ResponseEntity<String>(disciplines, HttpStatus.OK);
 	}
 
-	@PostMapping(value = "/")
+	@PostMapping(value = "/signup")
 	@ResponseBody
 	public ResponseEntity<Discipline> create(@RequestBody Discipline discipline) {
 		if(disciplineService.containsDiscipline(discipline.getId())) {

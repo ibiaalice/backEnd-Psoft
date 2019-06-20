@@ -1,5 +1,5 @@
-package dao;
-import model.User;
+package com.dao;
+import com.model.*;
 import java.io.Serializable;
 import java.util.Optional;
 

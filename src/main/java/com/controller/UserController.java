@@ -1,4 +1,4 @@
-package controller;
+package com.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,11 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import exception.UserExistException;
 import exception.UserNotExistException;
-import model.User;
-import service.UserService;
+import com.model.User;
+import com.model.UserDTO;
+import com.service.UserService;
 
 @RestController
-@RequestMapping({ "/v1/users" }) // ver com Gabriel essa notação de bd
+@RequestMapping({ "/v1/users" }) 
 public class UserController {
 	private UserService userService;
 
@@ -26,7 +27,7 @@ public class UserController {
 
 	@GetMapping(value = "/{email}")
 	@ResponseBody
-	public ResponseEntity<User> findById(@PathVariable String email) {
+	public ResponseEntity<User> findByEmail(@PathVariable String email) {
 		if (userService.containsUser(email) == false)
 			throw new UserNotExistException("This user does not exist!");
 
@@ -35,19 +36,31 @@ public class UserController {
 		return new ResponseEntity<User>(user, HttpStatus.OK);
 
 	}
-
-	@PostMapping(value = "/")
+	
+	@PostMapping(value = "/login")
 	@ResponseBody
-	public ResponseEntity<User> create(@RequestBody User user) {
+	public ResponseEntity<UserDTO> login(@RequestBody String email){
+		User newUser = (User) userService.findByEmail(email);
+		
+		if(!userService.containsUser(email)) {
+			throw new UserNotExistException("Usuário inexistente");
+		}
+		UserDTO userDTO = new UserDTO(newUser.getFirstName(), newUser.getLastName(), newUser.getEmail(), "istoeutoken");
+		return new ResponseEntity<UserDTO>(userDTO, HttpStatus.FOUND);
+	}
+
+	@PostMapping(value = "/signup")
+	@ResponseBody
+	public ResponseEntity<UserDTO> create(@RequestBody User user) {
 		if (userService.containsUser(user.getEmail()))
 			throw new UserExistException("This user already exist!");
 		
 		User newUser = userService.create(user);
+		UserDTO userDTO = new UserDTO(newUser.getFirstName(),newUser.getLastName(),newUser.getEmail(), "useaimaginacao");
 
-		return new ResponseEntity<User>(newUser, HttpStatus.CREATED);
+		return new ResponseEntity<UserDTO>(userDTO, HttpStatus.CREATED);
 
 	}
 	
 	
-
 }

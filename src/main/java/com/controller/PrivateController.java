@@ -1,4 +1,4 @@
-package controller;
+package com.controller;
 
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.web.bind.annotation.GetMapping;

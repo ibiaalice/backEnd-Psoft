@@ -1,4 +1,4 @@
-package controller;
+package com.controller;
 
 import java.sql.Date;
 
@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 import exception.AuthException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import model.User;
-import service.UserService;
+import com.model.User;
+import com.service.UserService;
 
 @RestController
 @RequestMapping("/v1/auth")

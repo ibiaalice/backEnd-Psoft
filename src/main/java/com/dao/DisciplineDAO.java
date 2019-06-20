@@ -1,4 +1,4 @@
-package dao;
+package com.dao;
 
 import java.io.Serializable;
 import java.lang.reflect.Array;
@@ -6,7 +6,7 @@ import java.lang.reflect.Array;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import model.Discipline;
+import com.model.Discipline;
 /**
  * Interface de comunicação com banco de dados
  * @author Beatriz Alice

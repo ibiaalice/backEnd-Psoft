@@ -1,4 +1,4 @@
-package controller;
+package com.controller;
 
 import org.springframework.web.filter.GenericFilterBean;
 

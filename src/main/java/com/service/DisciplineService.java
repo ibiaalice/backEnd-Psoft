@@ -1,8 +1,8 @@
-package service;
+package com.service;
 import org.springframework.stereotype.Service;
 
-import dao.DisciplineDAO;
-import model.Discipline;
+import com.dao.DisciplineDAO;
+import com.model.Discipline;
 
 @Service
 public class DisciplineService {
@@ -14,7 +14,7 @@ public class DisciplineService {
 	}
 	
 	public Discipline create(Discipline discipline) {
-		return disciplineDAO.save(discipline);
+		return (Discipline) disciplineDAO.save(discipline);
 	}
 	
 	public Discipline findById(long id) {
