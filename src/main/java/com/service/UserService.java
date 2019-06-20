@@ -33,7 +33,7 @@ public class UserService {
 	 * @return deveria retornar um User
 	 */
 	public Object findByEmail(String email) {
-		return userDAO.findById(email);
+		return userDAO.findByEmail(email);
 	}
 	
 	private boolean containsUser(User user) {

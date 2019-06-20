@@ -1,10 +1,11 @@
 package com.model;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import org.hibernate.annotations.Entity;
+
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -31,6 +32,7 @@ public class User {
 		this.email = email;
 		this.passwd = passwd;
 	}
+
 
 	public String getFirstName() {
 		return firstName;

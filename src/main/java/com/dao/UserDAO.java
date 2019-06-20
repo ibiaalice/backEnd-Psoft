@@ -17,8 +17,8 @@ public interface UserDAO<T, ID extends Serializable> extends JpaRepository< User
 	 * @param email email do user
 	 * @return user com mesmo email.
 	 */
-	@Query(value = "Select u from user u where u.login=:plogin.") 
-	Optional<User> findById(@Param("plogin") String email);
+	@Query(value = "Select u from user u where u.login=:plogin.", nativeQuery = true) 
+	User findByEmail(@Param("plogin") String email);
 
 
 }
