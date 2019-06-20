@@ -22,8 +22,6 @@ public class ProjectApplication {
 		FilterRegistrationBean filterRb = new FilterRegistrationBean();
 		filterRb.setFilter(new TokenFilter());
 		filterRb.addUrlPatterns("/private");
-		filterRb.addUrlPatterns("/user");
-		filterRb.addUrlPatterns("/discipline");
 		return filterRb;
 	}
 	

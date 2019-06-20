@@ -47,5 +47,5 @@ public class UserDTO {
 	public void setToken(String token) {
 		this.token = token;
 	}
-	}
+	
 }

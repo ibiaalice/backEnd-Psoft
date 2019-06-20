@@ -6,7 +6,7 @@ import org.springframework.web.filter.GenericFilterBean;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.SignatureException;
-import service.UserService;
+import com.service.UserService;
 
 import java.io.IOException;
 
