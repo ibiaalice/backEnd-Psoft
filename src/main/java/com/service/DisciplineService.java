@@ -43,7 +43,7 @@ public class DisciplineService {
 	
 	public boolean containsDiscipline(long id) {
 		Discipline discipline = disciplineDAO.findById(id);
-		return !(discipline == null);
+		return !(discipline == null ||  discipline.getName() == "");
 	}
 	
 	

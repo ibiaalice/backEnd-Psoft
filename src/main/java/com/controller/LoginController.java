@@ -22,7 +22,7 @@ public class LoginController {
 	@Autowired
 	private UserService userService;
 	
-	@PostMapping("/login")
+	
 	public LoginResponse authenticate(@RequestBody User user) throws AuthException {		
 		User authUser = (User) userService.findByEmail(user.getEmail());
 		

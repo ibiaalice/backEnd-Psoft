@@ -35,18 +35,18 @@ public class DisciplineController {
 
 		return new ResponseEntity<Discipline>(discipline, HttpStatus.OK);
 	}
+	@RequestMapping({"/teste"})
+		@GetMapping(value = "/{name}")
+		@ResponseBody
+		public ResponseEntity<String> findByName(@PathVariable String name) {
+			String disciplines = disciplineService.findByName(name);
 	
-	@GetMapping(value = "/{name}")
-	@ResponseBody
-	public ResponseEntity<String> findByName(@PathVariable String name) {
-		String disciplines = disciplineService.findByName(name);
-
-		if (!disciplineService.containsDiscipline(name)) {
-			throw new DisciplineNotFoundException("Discipline not found!");
+			if (!disciplineService.containsDiscipline(name)) {
+				throw new DisciplineNotFoundException("Discipline not found!");
+			}
+	
+			return new ResponseEntity<String>(disciplines, HttpStatus.OK);
 		}
-
-		return new ResponseEntity<String>(disciplines, HttpStatus.OK);
-	}
 
 	@PostMapping(value = "/signup")
 	@ResponseBody
@@ -54,7 +54,7 @@ public class DisciplineController {
 		if(disciplineService.containsDiscipline(discipline.getId())) {
 			throw new DisciplineNotExistsException("Discipline alreayd exists!");
 		}
-		
+		disciplineService.create(discipline);
 		return new ResponseEntity<Discipline>(discipline, HttpStatus.CREATED);
 	}
 	
