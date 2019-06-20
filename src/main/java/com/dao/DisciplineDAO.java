@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.lang.reflect.Array;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.model.Discipline;
@@ -21,6 +23,7 @@ public interface DisciplineDAO<T, ID extends Serializable> extends JpaRepository
 	
 	Discipline findById(long id);
 	
-	Discipline[] findByName(String name);
+	@Query(value="Select * from discipline d where d.name = :nome", nativeQuery = true)
+	Discipline[] findByName(@Param("nome") String name);
 
 }

@@ -28,15 +28,14 @@ public class DisciplineController {
 	@ResponseBody
 	public ResponseEntity<Discipline> findById(@PathVariable long id) {
 		Discipline discipline = disciplineService.findById(id);
-
 		if (!disciplineService.containsDiscipline(id)) {
 			throw new DisciplineNotFoundException("Discipline not found!");
 		}
 
 		return new ResponseEntity<Discipline>(discipline, HttpStatus.OK);
 	}
-	@RequestMapping({"/teste"})
-		@GetMapping(value = "/{name}")
+	
+		@GetMapping(value = "nome/{name}")
 		@ResponseBody
 		public ResponseEntity<String> findByName(@PathVariable String name) {
 			String disciplines = disciplineService.findByName(name);
