@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserDAO<T, ID extends Serializable> extends JpaRepository<User, String> {
 	User save(User user);
+	boolean existsById(String id);
 	
 	/**
 	 * Método de busca com a característica do email.

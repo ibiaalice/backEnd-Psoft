@@ -23,9 +23,9 @@ public class UserService {
 		return userDAO.save(user);
 	}
 	
-	public void delete(Long codeUser) {
-		userDAO.deleteById(codeUser);
-	}
+//	public void delete(Long codeUser) {
+//		userDAO.deleteById(codeUser);
+//	}
 	
 	/**
 	 * Espero tirar a duvida do pq não retorna um User
