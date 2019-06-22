@@ -19,16 +19,12 @@ import lombok.ToString;
 
 @Data
 @Entity @ToString
-@Table
 @EqualsAndHashCode(exclude={"firstName", "lastName"})
 public class Usuario {
 	@Id 
 	private String email;
-	@Column
 	private String firstName;
-	@Column
 	private String lastName;
-	@Column
 	private String passwd;
 	
 	public Usuario(String firstName, String lastName, String email, String passwd) {
