@@ -37,11 +37,19 @@ public class UserService {
 	}
 	
 	private boolean containsUser(User user) {
-		return userDAO.existsById(user.getEmail());
+		User user1 = userDAO.findByEmail(user.getEmail());
+		if(user1 == null) {
+			return false;
+		}
+		return true;
 	}
 	
 	public boolean containsUser(String email) {
-		return userDAO.existsById(email);
+		User user2 = userDAO.findByEmail(email);
+		if(user2 == null ) {
+			return false;
+		}
+		return true;
 	}
 	
 }
