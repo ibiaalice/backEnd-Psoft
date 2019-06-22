@@ -9,8 +9,8 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserDAO<T, ID extends Serializable> extends JpaRepository<User, String> {
-	User save(User user);
+public interface UserDAO<T, ID extends Serializable> extends JpaRepository<Usuario, String> {
+	Usuario save(Usuario user);
 	
 	
 	/**
@@ -18,8 +18,8 @@ public interface UserDAO<T, ID extends Serializable> extends JpaRepository<User,
 	 * @param email email do user
 	 * @return user com mesmo email.
 	 */
-	@Query(value="Select * from user u where u.email = :plogin", nativeQuery= true) 
-	User findByEmail(@Param("plogin") String email);
+	@Query(value="Select * from usuario u where u.email = :plogin", nativeQuery= true) 
+	Usuario findByEmail(@Param("plogin") String email);
 
 
 }

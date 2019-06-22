@@ -3,7 +3,7 @@ package com.service;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
-import com.model.User;
+import com.model.Usuario;
 
 import exception.UserExistException;
 
@@ -18,7 +18,7 @@ public class UserService {
 		this.userDAO = userDAO;
 	}
 	
-	public User create(User user) {
+	public Usuario create(Usuario user) {
 		if(containsUser(user)) { 
 			throw new UserExistException("there is a registered user with the same data.");
 		}
@@ -34,12 +34,12 @@ public class UserService {
 	 * @param email
 	 * @return User
 	 */
-	public User findByEmail(String email) {
+	public Usuario findByEmail(String email) {
 		return userDAO.findByEmail(email);
 	}
 	
-	private boolean containsUser(User user) {
-		User user1 = userDAO.findByEmail(user.getEmail());
+	private boolean containsUser(Usuario user) {
+		Usuario user1 = userDAO.findByEmail(user.getEmail());
 		if(user1 == null) {
 			return false;
 		}
@@ -47,7 +47,7 @@ public class UserService {
 	}
 	
 	public boolean containsUser(String email) {
-		User user2 = userDAO.findByEmail(email);
+		Usuario user2 = userDAO.findByEmail(email);
 		if(user2 == null ) {
 			return false;
 		}

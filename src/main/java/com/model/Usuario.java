@@ -1,6 +1,7 @@
 package com.model;
 
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,8 +21,8 @@ import lombok.ToString;
 @Entity @ToString
 @Table
 @EqualsAndHashCode(exclude={"firstName", "lastName"})
-public class User {
-	@Id @Column
+public class Usuario {
+	@Id 
 	private String email;
 	@Column
 	private String firstName;
@@ -30,13 +31,13 @@ public class User {
 	@Column
 	private String passwd;
 	
-	public User(String firstName, String lastName, String email, String passwd) {
+	public Usuario(String firstName, String lastName, String email, String passwd) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.passwd = passwd;
 	}
-	public User() {
+	public Usuario() {
 		
 	}
 
