@@ -15,7 +15,7 @@ import exception.AuthException;
 import exception.UserNotExistException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import com.model.User;
+import com.model.Usuario;
 import com.model.UserDTO;
 import com.service.UserService;
 
@@ -30,7 +30,7 @@ public class LoginController {
 	@PostMapping(value = "/login")
 	@ResponseBody
 	public ResponseEntity<UserDTO> authenticate(@RequestBody String email) throws AuthException {		
-		User authUser = (User) userService.findByEmail(email);
+		Usuario authUser = (Usuario) userService.findByEmail(email);
 		
 		if(authUser == null) throw new AuthException("User not found!");
 		
