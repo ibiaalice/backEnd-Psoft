@@ -17,12 +17,16 @@ import lombok.ToString;
 
 @Data
 @Entity @ToString
+@Table(name="user")
 @EqualsAndHashCode(exclude={"firstName", "lastName"})
 public class User {
-	@Id
+	@Id @Column(name="email")
 	private String email;
+	@Column(name="firstName")
 	private String firstName;
+	@Column(name="lastName")
 	private String lastName;
+	@Column(name="passwd")
 	private String passwd;
 	
 	public User(String firstName, String lastName, String email, String passwd) {
