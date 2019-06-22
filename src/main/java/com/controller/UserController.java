@@ -37,18 +37,6 @@ public class UserController {
 
 	}
 	
-	@PostMapping(value = "/login")
-	@ResponseBody
-	public ResponseEntity<UserDTO> login(@RequestBody String email){
-		User newUser = (User) userService.findByEmail(email);
-		
-		if(!userService.containsUser(email)) {
-			throw new UserNotExistException("Usuário inexistente");
-		}
-		UserDTO userDTO = new UserDTO(newUser.getFirstName(), newUser.getLastName(), newUser.getEmail(), "istoeutoken");
-		return new ResponseEntity<UserDTO>(userDTO, HttpStatus.FOUND);
-	}
-
 	@PostMapping(value = "/signup")
 	@ResponseBody
 	public ResponseEntity<UserDTO> create(@RequestBody User user) {
