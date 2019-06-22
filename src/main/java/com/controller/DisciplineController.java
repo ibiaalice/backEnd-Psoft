@@ -37,6 +37,18 @@ public class DisciplineController {
 
 	@GetMapping(value = "nome/{name}")
 	@ResponseBody
+	public ResponseEntity<String> findByName(@PathVariable String name) {
+		String disciplines = disciplineService.findByName(name);
+
+		if (!disciplineService.containsDiscipline(name)) {
+			throw new DisciplineNotFoundException("Discipline not found!");
+		}
+
+		return new ResponseEntity<String>(disciplines, HttpStatus.OK);
+	}
+	
+	@GetMapping(value = "nome/{substring}")
+	@ResponseBody
 	public ResponseEntity<String> findBySubstring(@PathVariable String substring) {
 		String disciplines = disciplineService.findBySubstring(substring);
 
@@ -45,8 +57,9 @@ public class DisciplineController {
 		}
 
 		return new ResponseEntity<String>(disciplines, HttpStatus.OK);
+		
 	}
-
+	
 	@PostMapping(value = "/signup")
 	@ResponseBody
 	public ResponseEntity<Discipline> create(@RequestBody Discipline discipline) {
@@ -56,5 +69,7 @@ public class DisciplineController {
 		disciplineService.create(discipline);
 		return new ResponseEntity<Discipline>(discipline, HttpStatus.CREATED);
 	}
+	
+	
 
 }
