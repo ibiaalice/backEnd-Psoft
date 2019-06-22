@@ -2,6 +2,7 @@ package com.dao;
 
 import java.io.Serializable;
 import java.lang.reflect.Array;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -25,5 +26,15 @@ public interface DisciplineDAO<T, ID extends Serializable> extends JpaRepository
 	
 	@Query(value="Select * from discipline d where d.name = :nome", nativeQuery = true)
 	Discipline[] findByName(@Param("nome") String name);
+	
+	//isso pode dar problemão 
+	@Query(value = "SELECT d FROM Discipline d WHERE d.name LIKE concat('%',:substring,'%')")
+	List<Discipline> findBySubstring(@Param("substring") String substring);
+	
+	@Override //isso pode dar problema
+	<D extends Discipline> List<D> saveAll(Iterable<D> iterable);
+	
+	
+	
 
 }
