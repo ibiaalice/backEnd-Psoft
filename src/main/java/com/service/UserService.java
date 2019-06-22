@@ -4,6 +4,9 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 import com.model.User;
+
+import exception.UserExistException;
+
 import com.dao.UserDAO;
 
 @Service 
@@ -17,8 +20,7 @@ public class UserService {
 	
 	public User create(User user) {
 		if(containsUser(user)) { 
-			System.out.println("ainda vou fazer algo aqui");
-			//throw new UserExistException("there is a registered user with the same data.");
+			throw new UserExistException("there is a registered user with the same data.");
 		}
 		return userDAO.save(user);
 	}
@@ -30,7 +32,7 @@ public class UserService {
 	/**
 	 * Espero tirar a duvida do pq não retorna um User
 	 * @param email
-	 * @return deveria retornar um User
+	 * @return User
 	 */
 	public User findByEmail(String email) {
 		return userDAO.findByEmail(email);
