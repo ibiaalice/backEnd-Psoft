@@ -47,7 +47,7 @@ public class DisciplineController {
 		return new ResponseEntity<String>(disciplines, HttpStatus.OK);
 	}
 	
-	@GetMapping(value = "nome/{substring}")
+	@GetMapping(value = "nome/substring/{substring}")
 	@ResponseBody
 	public ResponseEntity<String> findBySubstring(@PathVariable String substring) {
 		String disciplines = disciplineService.findBySubstring(substring);
