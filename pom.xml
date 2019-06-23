@@ -20,6 +20,17 @@
 	
 	<dependencies>
 	
+	<!-- https://mvnrepository.com/artifact/org.json/json -->
+		<dependency>
+		    <groupId>org.json</groupId>
+		    <artifactId>json</artifactId>
+		    <version>20180813</version>
+		</dependency>
+	
+	
+	
+	
+	
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjwt</artifactId>
@@ -152,7 +163,12 @@
             <artifactId>h2</artifactId>
             <scope>runtime</scope>
         </dependency>
-	</dependencies>
+        <dependency>
+            <groupId>com.vaadin.external.google</groupId>
+            <artifactId>android-json</artifactId>
+            <version>0.0.20131108.vaadin1</version>
+        </dependency>
+    </dependencies>
 
 	<build>
 		<plugins>
