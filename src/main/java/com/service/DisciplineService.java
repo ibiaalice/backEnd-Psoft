@@ -88,7 +88,7 @@ public class DisciplineService {
 		 disciplineDAO.save(discipline);
 	}
 	
-public void saveAllDisciplines()  throws IOException, ParseException, Exception{
+/*public void saveAllDisciplines()  throws IOException, ParseException, Exception{
 	JSONArray jsonArray;
 	
 	JSONParser jsonParser = new JSONParser();
@@ -116,6 +116,6 @@ public void saveAllDisciplines()  throws IOException, ParseException, Exception{
 		
 	});
 		
-	}
+	}*/
 	
 }
