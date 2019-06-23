@@ -37,7 +37,7 @@ public class DisciplineController {
 		return new ResponseEntity<Discipline>(discipline, HttpStatus.OK);
 	}
 
-	@GetMapping(value = "nome/{name}")
+	@GetMapping(value = "/nome/{name}")
 	@ResponseBody
 	public ResponseEntity<String> findByName(@PathVariable String name) {
 		String disciplines = disciplineService.findByName(name);
@@ -58,7 +58,7 @@ public class DisciplineController {
 		
 	}
 	
-	@GetMapping(value = "find/findAll/")
+	@GetMapping(value = "find")
 	@ResponseBody
 	public ResponseEntity<List> findAll(){
 		List listDisciplines = disciplineService.findAll();
