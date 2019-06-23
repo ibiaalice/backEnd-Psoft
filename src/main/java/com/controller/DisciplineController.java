@@ -52,10 +52,6 @@ public class DisciplineController {
 	public ResponseEntity<String> findBySubstring(@PathVariable String substring) {
 		String disciplines = disciplineService.findBySubstring(substring);
 
-		if (!disciplineService.containsDiscipline(substring)) {
-			throw new DisciplineNotFoundException("Discipline not found!");
-		}
-
 		return new ResponseEntity<String>(disciplines, HttpStatus.OK);
 		
 	}
