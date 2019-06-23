@@ -66,5 +66,8 @@ public class DisciplineService {
 		return !(discipline == null ||  discipline.getName() == "");
 	}
 	
+	public List<Discipline> findAll(){
+		return this.disciplineDAO.findAll();
+	}
 	
 }

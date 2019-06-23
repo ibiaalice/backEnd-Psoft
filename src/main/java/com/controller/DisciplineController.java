@@ -1,5 +1,7 @@
 package com.controller;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -53,6 +55,14 @@ public class DisciplineController {
 		String disciplines = disciplineService.findBySubstring(substring);
 
 		return new ResponseEntity<String>(disciplines, HttpStatus.OK);
+		
+	}
+	
+	@GetMapping(value = "nome/findAll/")
+	@ResponseBody
+	public ResponseEntity<List> findAll(){
+		List listDisciplines = disciplineService.findAll();
+		return new ResponseEntity<List>(listDisciplines, HttpStatus.OK);
 		
 	}
 	
