@@ -46,10 +46,10 @@ public class DisciplineService {
 	}
 	
 	
-	public String findBySubstring(String substring) {
+	public List findBySubstring(String substring) {
 		List<Discipline> disciplines = disciplineDAO.findBySubstring(substring);
-		String listDisciplines = concateStringByList(disciplines);
-		return listDisciplines;
+		
+		return disciplines;
 	}
 	
 	private String concateStringByList(List disciplines) {

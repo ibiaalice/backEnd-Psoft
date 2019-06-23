@@ -51,10 +51,10 @@ public class DisciplineController {
 	
 	@GetMapping(value = "/substring/{substring}")
 	@ResponseBody
-	public ResponseEntity<String> findBySubstring(@PathVariable String substring) {
-		String disciplines = disciplineService.findBySubstring(substring);
+	public ResponseEntity<List> findBySubstring(@PathVariable String substring) {
+		List disciplines = disciplineService.findBySubstring(substring);
 
-		return new ResponseEntity<String>(disciplines, HttpStatus.OK);
+		return new ResponseEntity<List>(disciplines, HttpStatus.OK);
 		
 	}
 	
