@@ -2,6 +2,8 @@ package com.controller;
 
 import java.util.List;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -76,6 +78,13 @@ public class DisciplineController {
 		return new ResponseEntity<Discipline>(discipline, HttpStatus.CREATED);
 	}
 	
+	//parte do like :
+
+	@PostMapping(value = "/like")
+	public void like(@RequestBody JSONObject request) throws JSONException {
+		this.disciplineService.like(request);
+	}
+
 	
 
 }
