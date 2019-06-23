@@ -2,11 +2,16 @@ package com.service;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
+import com.dao.UserDAO;
+import com.model.Usuario;
 import org.apache.tomcat.util.json.ParseException;
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dao.DisciplineDAO;
@@ -16,11 +21,16 @@ import com.model.Discipline;
 public class DisciplineService {
 	
 	private final DisciplineDAO disciplineDAO;
+
+	@Autowired
+	private final UserDAO userDAO;
 	
-	public DisciplineService(DisciplineDAO disciplineDAO)  {
+	public DisciplineService(DisciplineDAO disciplineDAO, UserDAO userDAO)  {
 
 		this.disciplineDAO = disciplineDAO;
-		try {
+		this.userDAO = userDAO;
+		//this.deleteAll();
+		/*try {
 			this.saveAll();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -28,7 +38,8 @@ public class DisciplineService {
 			e.printStackTrace();
 		} catch (JSONException e) {
 			e.printStackTrace();
-		}
+		}*/
+
 
 	}
 	
@@ -40,7 +51,9 @@ public class DisciplineService {
 		return disciplineDAO.findById(id);
 	}
 	
-	
+	public void deleteAll(){
+		disciplineDAO.deleteAll();
+	}
 	
 	public String findByName(String name) {
 		Discipline[] disciplines = disciplineDAO.findByName(name);
@@ -105,6 +118,26 @@ public class DisciplineService {
 			this.create(new Discipline(list.get(i)));
 	}
 
+
+	public void like(JSONObject request) throws JSONException {
+		String email = (String) request.get("email");
+
+		Usuario user = userDAO.findByEmail(email);
+
+		String idDiscipline = (String) request.get("id");
+		Discipline discipline = disciplineDAO.findById(Integer.parseInt(idDiscipline));
+
+		discipline.getUserLiked().add(user);
+		user.getEnjoiyed().add(discipline);
+
+
+		userDAO.save(user);
+		disciplineDAO.save(discipline);
+
+	}
+
+
+	
 
 }
 

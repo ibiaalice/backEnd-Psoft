@@ -1,20 +1,13 @@
 package com.model;
 
-
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
+
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Data
@@ -26,15 +19,25 @@ public class Usuario {
 	private String firstName;
 	private String lastName;
 	private String passwd;
+
+	@ManyToMany
+	@JoinTable(
+			name="liked_course",
+			joinColumns = @JoinColumn(name = "user_email"),
+			inverseJoinColumns = @JoinColumn(name = "subject_id")
+	)
+	private Set<Discipline> enjoiyed;
 	
-	public Usuario(String firstName, String lastName, String email, String passwd) {
+	public Usuario(String firstName, String lastName, String email, String passwd, Set<Discipline> enjoyed) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.passwd = passwd;
+
 	}
+
 	public Usuario() {
-		
+		this.enjoiyed = new HashSet<>();
 	}
 
 
@@ -65,6 +68,13 @@ public class Usuario {
 	public String getEmail() {
 		return this.email;
 	}
-	
+
+	public Set<Discipline> getEnjoiyed() {
+		return enjoiyed;
+	}
+
+	public void setEnjoiyed(Set<Discipline> enjoiyed) {
+		this.enjoiyed = enjoiyed;
+	}
 
 }

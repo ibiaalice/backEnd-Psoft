@@ -1,15 +1,15 @@
 package com.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+
 
 import lombok.Data;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
- * Classe Que guardará dados das Disciplinas do sistema
+ * Classe que guardará dados das Disciplinas do sistema
  * @author Beatriz Alice
  *
  */
@@ -23,11 +23,14 @@ public class Discipline {
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //gera o valor do id 
 	private long id;
 	private String name;
-	
+
+	@ManyToMany(mappedBy = "enjoiyed")
+	private Set<Usuario> userLiked;
 	/**
 	 * Construtor básico da classe Discipline
 	 */
 	public Discipline() {
+		userLiked = new HashSet<Usuario>();
 	}
 	
 	/**
@@ -63,11 +66,13 @@ public class Discipline {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	public String toString() {
 		return this.id + " - " + this.name;
 	}
-	
-	
+
+	public Set<Usuario> getUserLiked() {
+		return this.userLiked;
+	}
 	
 }
