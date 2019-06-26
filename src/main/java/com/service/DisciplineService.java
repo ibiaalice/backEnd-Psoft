@@ -119,9 +119,10 @@ public class DisciplineService {
 	}
 
 
+	//Like e unlike
+
 	public void like(JSONObject request) throws JSONException {
 		String email = (String) request.get("email");
-
 		Usuario user = userDAO.findByEmail(email);
 
 		String idDiscipline = (String) request.get("id");
@@ -130,6 +131,20 @@ public class DisciplineService {
 		discipline.getUserLiked().add(user);
 		user.getEnjoiyed().add(discipline);
 
+
+		userDAO.save(user);
+		disciplineDAO.save(discipline);
+
+	}
+
+	public void unlike(JSONObject request) throws JSONException {
+		String email = (String) request.get("email");
+		Usuario user = userDAO.findByEmail(email);
+		String idDiscipline = (String) request.get("id");
+		Discipline discipline = disciplineDAO.findById(Integer.parseInt(idDiscipline));
+
+		discipline.getUserLiked().remove(user);
+		user.getEnjoiyed().remove(discipline);
 
 		userDAO.save(user);
 		disciplineDAO.save(discipline);

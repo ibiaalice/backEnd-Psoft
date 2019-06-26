@@ -80,11 +80,17 @@ public class DisciplineController {
 	
 	//parte do like :
 
-	@PostMapping(value = "/like")
+	@PostMapping(value = "/liked")
 	public void like(@RequestBody JSONObject request) throws JSONException {
-		this.disciplineService.like(request);
+
 	}
 
-	
+	@PostMapping(value = "/unliked")
+	public void Unlike(@RequestBody JSONObject request) throws JSONException {
+		this.disciplineService.unlike(request);
+	}
+
+
+
 
 }

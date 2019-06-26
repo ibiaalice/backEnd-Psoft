@@ -29,12 +29,14 @@ public class LoginController {
 	
 	@PostMapping(value = "/login")
 	@ResponseBody
-	public ResponseEntity<UserDTO> authenticate(@RequestBody String email) throws AuthException {		
-		Usuario authUser = (Usuario) userService.findByEmail(email);
+	public ResponseEntity<UserDTO> authenticate(@RequestBody Usuario user) throws AuthException {
+		Usuario authUser = (Usuario) userService.findByEmail(user.getEmail());
 		
 		if(authUser == null) throw new AuthException("User not found!");
+
+		String passwd = authUser.getPasswd();
 		
-		if(!authUser.getPasswd().equals(email)) throw new AuthException("Wrong Password!");
+		if(!authUser.getPasswd().equals(passwd)) throw new AuthException("Wrong Password!");
 		
 		final String token = Jwts.builder().setSubject(authUser.getPasswd()).signWith(SignatureAlgorithm.HS512, TOKEN_KEY).
 				setExpiration(new Date(System.currentTimeMillis() + 1 * 60 * 1000))
