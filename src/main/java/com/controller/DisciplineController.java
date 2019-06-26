@@ -60,7 +60,7 @@ public class DisciplineController {
 		
 	}
 	
-	@GetMapping(value = "find")
+	@GetMapping(value = "/find")
 	@ResponseBody
 	public ResponseEntity<List> findAll(){
 		List listDisciplines = disciplineService.findAll();
