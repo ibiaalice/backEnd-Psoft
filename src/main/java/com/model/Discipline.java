@@ -15,6 +15,7 @@ import java.util.Set;
  */
 @Data
 @Entity
+@Table(name = "discipline")
 public class Discipline {
 	/**
 	 * Variável de controle, gerada automaticamente
@@ -26,10 +27,26 @@ public class Discipline {
 
 	@ManyToMany(mappedBy = "enjoiyed")
 	private Set<Usuario> userLiked;
+
+	@OneToMany(
+			mappedBy = "discipline",
+			cascade =  CascadeType.ALL,
+			orphanRemoval = true
+	)
+	private Set<UserToDiscipline> evaluation;
+
+	@OneToMany(
+			mappedBy = "discipline",
+			cascade = CascadeType.ALL,
+			orphanRemoval = true
+	)
+	private Set<Comment> commentsDiscipline;
+
 	/**
 	 * Construtor básico da classe Discipline
 	 */
 	public Discipline() {
+
 		userLiked = new HashSet<Usuario>();
 	}
 	
@@ -38,6 +55,7 @@ public class Discipline {
 	 * @param name recebe o nome da disciplina.
 	 */
 	public Discipline(String name) {
+
 		this.name = name;
 	}
 	 
@@ -74,5 +92,22 @@ public class Discipline {
 	public Set<Usuario> getUserLiked() {
 		return this.userLiked;
 	}
-	
+
+	public Set<Comment> getCommentsDiscipline() {
+		return commentsDiscipline;
+	}
+
+	public Set<UserToDiscipline> getEvaluation() {
+		return evaluation;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		return super.equals(o);
+	}
+
+
+
+
+
 }
