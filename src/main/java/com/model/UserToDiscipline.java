@@ -1,8 +1,11 @@
 package com.model;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.io.Serializable;
-
+@Entity
+@Table(name = "userToDiscipline")
 public class UserToDiscipline implements Serializable {
     @Column(name = "discipline_id")
     private Long disciplineId;
