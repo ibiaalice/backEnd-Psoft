@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.io.Serializable;
 
-public interface CommentDAO <T,ID extends Serializable> extends JpaRepository<Comment, UserToDiscipline> {
+public interface CommentDAO <T,ID extends Serializable> extends JpaRepository<Comment, Long> {
     Comment save(Comment comment);
 
     @Query(value = "SELECT c FROM Comment c WHERE c.id=:id")

@@ -128,7 +128,7 @@ public class DisciplineService {
 		String idDiscipline = (String) request.get("id");
 		Discipline discipline = disciplineDAO.findById(Integer.parseInt(idDiscipline));
 
-		discipline.getUserLiked().add(user);
+		//discipline.getUserLiked().add(user);
 		user.getEnjoiyed().add(discipline);
 
 
@@ -143,7 +143,7 @@ public class DisciplineService {
 		String idDiscipline = (String) request.get("id");
 		Discipline discipline = disciplineDAO.findById(Integer.parseInt(idDiscipline));
 
-		discipline.getUserLiked().remove(user);
+		//discipline.getUserLiked().remove(user);
 		user.getEnjoiyed().remove(discipline);
 
 		userDAO.save(user);

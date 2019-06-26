@@ -1,0 +1,6 @@
+com/model/Evaluation.class
+com/dao/CommentDAO.class
+com/model/Like.class
+com/model/UserToDiscipline.class
+com/dao/EvaluationDAO.class
+com/model/Comment.class

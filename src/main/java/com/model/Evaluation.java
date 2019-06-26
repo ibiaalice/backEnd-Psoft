@@ -5,7 +5,9 @@ import javax.persistence.*;
 @Entity
 @Table(name = "evalue_Disciplines")
 public class Evaluation {
-    @EmbeddedId
+    @Id
+    private long chave;
+
     private UserToDiscipline id;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -66,6 +68,10 @@ public class Evaluation {
     @Override
     public int hashCode() {
         return super.hashCode();
+    }
+
+    public long getChave() {
+        return chave;
     }
 
     @Override

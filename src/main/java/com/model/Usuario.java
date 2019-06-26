@@ -2,17 +2,13 @@ package com.model;
 
 import javax.persistence.*;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 import java.util.HashSet;
 import java.util.Set;
 
 
-@Data
 @Entity (name = "Usuario")
 @Table(name = "usuario")
-@EqualsAndHashCode(exclude={"firstName", "lastName"})
 public class Usuario {
 	@Id 
 	private String email;

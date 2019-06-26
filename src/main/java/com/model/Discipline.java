@@ -3,9 +3,10 @@ package com.model;
 import javax.persistence.*;
 
 
-import lombok.Data;
+
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -13,7 +14,6 @@ import java.util.Set;
  * @author Beatriz Alice
  *
  */
-@Data
 @Entity(name = "discipline")
 @Table(name = "discipline")
 public class Discipline {
@@ -26,7 +26,8 @@ public class Discipline {
 	private String name;
 
 	@ManyToMany(mappedBy = "enjoiyed")
-	private Set<Usuario> userLiked;
+	private Set<Like> likes;
+
 
 	@OneToMany(
 			mappedBy = "discipline",
@@ -35,19 +36,13 @@ public class Discipline {
 	)
 	private Set<UserToDiscipline> evaluation;
 
-	@OneToMany(
-			mappedBy = "discipline",
-			cascade = CascadeType.ALL,
-			orphanRemoval = true
-	)
-	private Set<Comment> commentsDiscipline;
 
 	/**
 	 * Construtor básico da classe Discipline
 	 */
 	public Discipline() {
 
-		userLiked = new HashSet<Usuario>();
+		this.likes = new HashSet<Like>();
 	}
 	
 	/**
@@ -87,14 +82,6 @@ public class Discipline {
 
 	public String toString() {
 		return this.id + " - " + this.name;
-	}
-
-	public Set<Usuario> getUserLiked() {
-		return this.userLiked;
-	}
-
-	public Set<Comment> getCommentsDiscipline() {
-		return commentsDiscipline;
 	}
 
 	public Set<UserToDiscipline> getEvaluation() {

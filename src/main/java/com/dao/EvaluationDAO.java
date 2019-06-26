@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.io.Serializable;
 
-public interface EvaluationDAO<T,ID extends Serializable> extends JpaRepository<Evaluation, UserToDiscipline> {
+public interface EvaluationDAO<T,ID extends Serializable> extends JpaRepository<Evaluation, Long> {
 
     Evaluation save(Evaluation evaluation);
 
