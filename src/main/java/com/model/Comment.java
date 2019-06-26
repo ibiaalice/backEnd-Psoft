@@ -24,7 +24,7 @@ public class Comment {
     private List<Comment> othersComments;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @MapsId("user")
+    @MapsId("usuario")
     private Usuario user;
 
     @ManyToOne(fetch = FetchType.LAZY)
