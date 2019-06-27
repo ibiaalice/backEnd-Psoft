@@ -76,12 +76,16 @@ public class DisciplineController {
 		return new ResponseEntity<Discipline>(discipline, HttpStatus.CREATED);
 	}
 
+
+
 	//parte do like :
 
 	@PostMapping(value = "likes/liked") //tomando erro 405
-	public void like(@RequestBody long id , @RequestBody String email) {
-
+	public ResponseEntity<Discipline>like(@RequestBody long id , @RequestBody String email) {
+		Discipline discipline = this.disciplineService.findById(id);
+		if(!disciplineService.containsDiscipline(id))
 		this.disciplineService.liked(id, email);
+		return new ResponseEntity<Discipline>(discipline, HttpStatus.CREATED);
 	}
 
 	@PostMapping(value = "likes/unliked")
