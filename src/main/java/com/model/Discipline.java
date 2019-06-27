@@ -1,6 +1,12 @@
 package com.model;
 
+import org.hibernate.annotations.Cascade;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Classe que guardará dados das Disciplinas do sistema
@@ -8,6 +14,7 @@ import javax.persistence.*;
  *
  */
 @Entity
+@Table(name = "discipline")
 public class Discipline {
 	/**
 	 * Variável de controle, gerada automaticamente
@@ -15,15 +22,17 @@ public class Discipline {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //gera o valor do id
 	private long id;
+	@Column(name = "name")
 	private String name;
 
-	/*@ManyToMany(mappedBy = "enjoiyed")
-	private Set<Usuario> userLiked;
+	@Column(name = "likes")
+	private HashSet<String> userLiked;
+
 	/**
 	 * Construtor básico da classe Discipline
 	 */
 	public Discipline() {
-		//userLiked = new HashSet<Usuario>();
+		userLiked = new HashSet<String>();
 	}
 
 	/**
@@ -31,6 +40,7 @@ public class Discipline {
 	 * @param name recebe o nome da disciplina.
 	 */
 	public Discipline(String name) {
+		this();
 		this.name = name;
 	}
 
@@ -60,10 +70,33 @@ public class Discipline {
 		this.name = name;
 	}
 
+	public Set getUserLikes(){
+		return this.userLiked;
+	}
+
+	public int getNumLikes(){
+		return this.userLiked.size();
+	}
+
+	@Override
 	public String toString() {
 		return this.id + " - " + this.name;
 	}
 
 
+	//Métodos de like
 
+	public boolean liked(String email){
+		return this.userLiked.add(email);
+
+	}
+
+	public boolean liked(Usuario usuario){
+		return this.userLiked.add(usuario.getEmail());
+	}
+
+
+	public boolean unliked(String email) {
+		return this.userLiked.remove(email);
+	}
 }

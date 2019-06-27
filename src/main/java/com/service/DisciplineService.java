@@ -75,13 +75,13 @@ public class DisciplineService {
 		return disciplines.length > 0;
 	}
 
-
+/*
 	public List findBySubstring(String substring) {
 		List<Discipline> disciplines = disciplineDAO.findBySubstring(substring);
 
 		return disciplines;
 	}
-
+*/
 	private String concateStringByList(List disciplines) {
 		String listDiscipline = "";
 		for(int i = 0; i < disciplines.size(); i ++) {
@@ -121,9 +121,18 @@ public class DisciplineService {
 
 	//Like e unlike
 
+	public boolean liked(long id, String email){
+
+		if(disciplineDAO.existsById(id))
+			return this.disciplineDAO.findById(id).liked(email);
+		else return false;
+	}
 
 
-
-
-
+	public boolean unlike(long id, String email) {
+		if(disciplineDAO.existsById(id))
+			return this.disciplineDAO.findById(id).unliked(email);
+		else
+			return false;
+	}
 }

@@ -51,7 +51,7 @@ public class DisciplineController {
 		return new ResponseEntity<String>(disciplines, HttpStatus.OK);
 	}
 
-	@GetMapping(value = "/substring/{substring}")
+/*	@GetMapping(value = "/substring/{substring}")
 	@ResponseBody
 	public ResponseEntity<List> findBySubstring(@PathVariable String substring) {
 		List disciplines = disciplineService.findBySubstring(substring);
@@ -59,7 +59,7 @@ public class DisciplineController {
 		return new ResponseEntity<List>(disciplines, HttpStatus.OK);
 
 	}
-
+*/
 	@GetMapping(value = "find")
 	@ResponseBody
 	public ResponseEntity<List> findAll(){
@@ -80,17 +80,18 @@ public class DisciplineController {
 
 	//parte do like :
 
-	@PostMapping(value = "/liked")
-	public void like(@RequestBody JSONObject request) throws JSONException {
-
+	@PostMapping(value = "/liked") //tomando erro 405
+	public void like(@RequestBody long id , @RequestBody String email) {
+		this.disciplineService.liked(id, email);
 	}
 
-	/*@PostMapping(value = "/unliked")
-	public void Unlike(@RequestBody JSONObject request) throws JSONException {
-		this.disciplineService.unlike(request);
+	@PostMapping(value = "/unliked")
+	public void Unlike(@RequestBody long id , @RequestBody String email)  {
+
+		this.disciplineService.unlike(id, email);
 	}
 
-	*/
+	
 
 
 }

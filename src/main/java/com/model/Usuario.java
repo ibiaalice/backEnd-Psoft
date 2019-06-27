@@ -15,13 +15,7 @@ public class Usuario {
 	private String lastName;
 	private String passwd;
 
-	@ManyToMany
-	@JoinTable(
-			name="liked_course",
-			joinColumns = @JoinColumn(name = "user_email"),
-			inverseJoinColumns = @JoinColumn(name = "subject_id")
-	)
-	private Set<Discipline> enjoiyed;
+
 
 	public Usuario(String firstName, String lastName, String email, String passwd, Set<Discipline> enjoyed) {
 		this.firstName = firstName;
@@ -31,9 +25,6 @@ public class Usuario {
 
 	}
 
-	public Usuario() {
-		this.enjoiyed = new HashSet<>();
-	}
 
 
 	public String getFirstName() {
@@ -64,12 +55,6 @@ public class Usuario {
 		return this.email;
 	}
 
-	public Set<Discipline> getEnjoiyed() {
-		return enjoiyed;
-	}
 
-	public void setEnjoiyed(Set<Discipline> enjoiyed) {
-		this.enjoiyed = enjoiyed;
-	}
 
 }
