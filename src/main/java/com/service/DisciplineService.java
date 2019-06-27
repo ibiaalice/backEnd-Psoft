@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import com.dao.UserDAO;
 import com.model.Usuario;
+import exception.DisciplineNotFoundException;
 import org.apache.tomcat.util.json.ParseException;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -55,9 +56,9 @@ public class DisciplineService {
 		disciplineDAO.deleteAll();
 	}
 
-	public String findByName(String name) {
-		Discipline[] disciplines = disciplineDAO.findByName(name);
-		return concateString(disciplines);
+	public Discipline findByName(String name) {
+
+		return disciplineDAO.findByName(name);
 
 	}
 
@@ -71,17 +72,17 @@ public class DisciplineService {
 	}
 
 	public boolean containsDiscipline(String name) {
-		Discipline[] disciplines = disciplineDAO.findByName(name);
-		return disciplines.length > 0;
+		Discipline disciplines = disciplineDAO.findByName(name);
+		return disciplines != null;
 	}
 
-/*
+
 	public List findBySubstring(String substring) {
 		List<Discipline> disciplines = disciplineDAO.findBySubstring(substring);
 
 		return disciplines;
 	}
-*/
+
 	private String concateStringByList(List disciplines) {
 		String listDiscipline = "";
 		for(int i = 0; i < disciplines.size(); i ++) {
@@ -121,18 +122,22 @@ public class DisciplineService {
 
 	//Like e unlike
 
-	public boolean liked(long id, String email){
+	public Discipline liked(long id, String email){
+		Discipline discipline = this.disciplineDAO.findById(id);
+		if(discipline == null)
+			throw new DisciplineNotFoundException("Disciplina não existe");
 
-		if(disciplineDAO.existsById(id))
-			return this.disciplineDAO.findById(id).liked(email);
-		else return false;
+		discipline.liked(email);
+		return disciplineDAO.save(discipline); //atualizando no bd
 	}
 
 
-	public boolean unlike(long id, String email) {
-		if(disciplineDAO.existsById(id))
-			return this.disciplineDAO.findById(id).unliked(email);
-		else
-			return false;
+	public Discipline unliked(long id, String email) {
+		Discipline discipline = this.disciplineDAO.findById(id);
+		if(discipline == null)
+			throw new DisciplineNotFoundException("Disciplina não existe");
+
+		discipline.unliked(email);
+		return disciplineDAO.save(discipline); //atualizando no bd
 	}
 }

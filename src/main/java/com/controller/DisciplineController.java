@@ -2,8 +2,6 @@ package com.controller;
 
 import java.util.List;
 
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,17 +39,17 @@ public class DisciplineController {
 
 	@GetMapping(value = "/nome/{name}")
 	@ResponseBody
-	public ResponseEntity<String> findByName(@PathVariable String name) {
-		String disciplines = disciplineService.findByName(name);
+	public ResponseEntity<Discipline> findByName(@PathVariable String name) {
+		Discipline discipline = disciplineService.findByName(name);
 
 		if (!disciplineService.containsDiscipline(name)) {
 			throw new DisciplineNotFoundException("Discipline not found!");
 		}
 
-		return new ResponseEntity<String>(disciplines, HttpStatus.OK);
+		return new ResponseEntity<Discipline>(discipline, HttpStatus.OK);
 	}
 
-/*	@GetMapping(value = "/substring/{substring}")
+	@GetMapping(value = "/substring/{substring}")
 	@ResponseBody
 	public ResponseEntity<List> findBySubstring(@PathVariable String substring) {
 		List disciplines = disciplineService.findBySubstring(substring);
@@ -59,7 +57,7 @@ public class DisciplineController {
 		return new ResponseEntity<List>(disciplines, HttpStatus.OK);
 
 	}
-*/
+
 	@GetMapping(value = "find")
 	@ResponseBody
 	public ResponseEntity<List> findAll(){
@@ -80,18 +78,21 @@ public class DisciplineController {
 
 	//parte do like :
 
-	@PostMapping(value = "/liked") //tomando erro 405
+	@PostMapping(value = "likes/liked") //tomando erro 405
 	public void like(@RequestBody long id , @RequestBody String email) {
+
 		this.disciplineService.liked(id, email);
 	}
 
-	@PostMapping(value = "/unliked")
+	@PostMapping(value = "likes/unliked")
 	public void Unlike(@RequestBody long id , @RequestBody String email)  {
 
-		this.disciplineService.unlike(id, email);
+		this.disciplineService.unliked(id, email);
 	}
 
-	
+
+
+
 
 
 }

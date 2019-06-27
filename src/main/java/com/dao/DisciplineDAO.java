@@ -25,10 +25,11 @@ public interface DisciplineDAO<T, ID extends Serializable> extends JpaRepository
 	Discipline findById(long id);
 
 	@Query(value="Select * from discipline d where d.name = :nome", nativeQuery = true)
-	Discipline[] findByName(@Param("nome") String name);
+	Discipline findByName(@Param("nome") String name);
 
-
-	@Query(value = "SELECT d FROM Discipline d WHERE d.name LIKE ('%',:substring,'%')")
+	//isso pode dar problemão
+	@Query(value = "SELECT d FROM Discipline d WHERE d.name LIKE '%substring' ")
 	List<Discipline> findBySubstring(@Param("substring") String substring);
+
 
 }
