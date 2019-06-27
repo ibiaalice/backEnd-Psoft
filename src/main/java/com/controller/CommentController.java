@@ -1,9 +1,7 @@
 package com.controller;
 
 import com.model.Comment;
-import com.model.Discipline;
 import com.service.CommentService;
-import exception.DisciplineNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -38,5 +36,7 @@ public class CommentController {
         commentService.create(newComment);
         return new ResponseEntity<Comment>(newComment, HttpStatus.CREATED);
     }
+
+
 
 }
