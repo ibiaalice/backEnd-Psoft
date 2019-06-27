@@ -1,8 +1,6 @@
 package com.model;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Classe que guardará dados das Disciplinas do sistema
