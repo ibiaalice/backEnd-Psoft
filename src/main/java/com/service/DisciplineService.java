@@ -19,12 +19,12 @@ import com.model.Discipline;
 
 @Service
 public class DisciplineService {
-	
+
 	private final DisciplineDAO disciplineDAO;
 
 	@Autowired
 	private final UserDAO userDAO;
-	
+
 	public DisciplineService(DisciplineDAO disciplineDAO, UserDAO userDAO)  {
 
 		this.disciplineDAO = disciplineDAO;
@@ -42,60 +42,60 @@ public class DisciplineService {
 
 
 	}
-	
+
 	public Discipline create(Discipline discipline) {
 		return (Discipline) disciplineDAO.save(discipline);
 	}
-	
+
 	public Discipline findById(long id) {
 		return disciplineDAO.findById(id);
 	}
-	
+
 	public void deleteAll(){
 		disciplineDAO.deleteAll();
 	}
-	
+
 	public String findByName(String name) {
 		Discipline[] disciplines = disciplineDAO.findByName(name);
 		return concateString(disciplines);
-		
+
 	}
-	
+
 	private String concateString(Discipline[] disciplines) {
 		String listDiscipline = "";
 		for(int i = 0; i < disciplines.length; i ++) {
 			listDiscipline = disciplines[i].toString();
 		}
-		
+
 		return listDiscipline;
 	}
-	
+
 	public boolean containsDiscipline(String name) {
 		Discipline[] disciplines = disciplineDAO.findByName(name);
 		return disciplines.length > 0;
 	}
-	
-	
+
+
 	public List findBySubstring(String substring) {
 		List<Discipline> disciplines = disciplineDAO.findBySubstring(substring);
-		
+
 		return disciplines;
 	}
-	
+
 	private String concateStringByList(List disciplines) {
 		String listDiscipline = "";
 		for(int i = 0; i < disciplines.size(); i ++) {
 			listDiscipline = disciplines.get(i).toString();
 		}
-		
+
 		return listDiscipline;
 	}
-	
+
 	public boolean containsDiscipline(long id) {
 		Discipline discipline = disciplineDAO.findById(id);
 		return !(discipline == null ||  discipline.getName() == "");
 	}
-	
+
 	public List<Discipline> findAll(){
 		return this.disciplineDAO.findAll();
 	}
@@ -121,38 +121,9 @@ public class DisciplineService {
 
 	//Like e unlike
 
-	public void like(JSONObject request) throws JSONException {
-		String email = (String) request.get("email");
-		Usuario user = userDAO.findByEmail(email);
 
-		String idDiscipline = (String) request.get("id");
-		Discipline discipline = disciplineDAO.findById(Integer.parseInt(idDiscipline));
-
-		//discipline.getUserLiked().add(user);
-		user.getEnjoiyed().add(discipline);
-
-
-		userDAO.save(user);
-		disciplineDAO.save(discipline);
-
-	}
-
-	public void unlike(JSONObject request) throws JSONException {
-		String email = (String) request.get("email");
-		Usuario user = userDAO.findByEmail(email);
-		String idDiscipline = (String) request.get("id");
-		Discipline discipline = disciplineDAO.findById(Integer.parseInt(idDiscipline));
-
-		//discipline.getUserLiked().remove(user);
-		user.getEnjoiyed().remove(discipline);
-
-		userDAO.save(user);
-		disciplineDAO.save(discipline);
-
-	}
 
 
 
 
 }
-

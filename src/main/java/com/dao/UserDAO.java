@@ -11,14 +11,14 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserDAO<T, ID extends Serializable> extends JpaRepository<Usuario, String> {
 	Usuario save(Usuario user);
-	
-	
+
+
 	/**
 	 * Método de busca com a característica do email.
 	 * @param email email do user
 	 * @return user com mesmo email.
 	 */
-	@Query(value="Select * from usuario u where u.email = :plogin", nativeQuery= true) 
+	@Query(value="Select * from usuario u where u.email = :plogin", nativeQuery= true)
 	Usuario findByEmail(@Param("plogin") String email);
 
 

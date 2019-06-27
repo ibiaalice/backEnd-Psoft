@@ -8,16 +8,16 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @RestController
 public class PrivateController {
-	
+
 	@GetMapping("/private")
 	public String privateMsg() {
 		return "user logged!";
 	}
-	
+
 	@GetMapping("/public")
 	public String publicMsg() {
 		return "user not logged!";
 	}
-	
+
 
 }

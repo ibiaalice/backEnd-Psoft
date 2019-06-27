@@ -3,14 +3,13 @@ package com.model;
 import javax.persistence.*;
 
 
+
 import java.util.HashSet;
 import java.util.Set;
 
-
-@Entity (name = "Usuario")
-@Table(name = "usuario")
+@Entity
 public class Usuario {
-	@Id 
+	@Id
 	private String email;
 	private String firstName;
 	private String lastName;
@@ -24,37 +23,17 @@ public class Usuario {
 	)
 	private Set<Discipline> enjoiyed;
 
-	@OneToMany(
-			mappedBy = "usuario",
-			cascade =  CascadeType.ALL,
-			orphanRemoval = true
-	)
-	private Set<Evaluation> evaluatedDiscipline;
-
-	@OneToMany(
-			mappedBy = "usuario",
-			cascade = CascadeType.ALL,
-			orphanRemoval = true
-	)
-	private Set<Comment> usuarioComments;
-	
 	public Usuario(String firstName, String lastName, String email, String passwd, Set<Discipline> enjoyed) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.passwd = passwd;
-		this.enjoiyed = new HashSet<>();
-		this.evaluatedDiscipline= new HashSet<>();
-		this.usuarioComments = new HashSet<>();
 
 	}
 
 	public Usuario() {
 		this.enjoiyed = new HashSet<>();
-		this.evaluatedDiscipline= new HashSet<>();
-		this.usuarioComments = new HashSet<>();
 	}
-
 
 
 	public String getFirstName() {
@@ -80,7 +59,7 @@ public class Usuario {
 	public void setPasswd(String passwd) {
 		this.passwd = passwd;
 	}
-	
+
 	public String getEmail() {
 		return this.email;
 	}
@@ -92,14 +71,5 @@ public class Usuario {
 	public void setEnjoiyed(Set<Discipline> enjoiyed) {
 		this.enjoiyed = enjoiyed;
 	}
-
-	public Set<Comment> getUsuarioComments() {
-		return usuarioComments;
-	}
-
-	public Set<Evaluation> getEvaluatedDiscipline() {
-		return evaluatedDiscipline;
-	}
-
 
 }

@@ -50,24 +50,24 @@ public class DisciplineController {
 
 		return new ResponseEntity<String>(disciplines, HttpStatus.OK);
 	}
-	
+
 	@GetMapping(value = "/substring/{substring}")
 	@ResponseBody
 	public ResponseEntity<List> findBySubstring(@PathVariable String substring) {
 		List disciplines = disciplineService.findBySubstring(substring);
 
 		return new ResponseEntity<List>(disciplines, HttpStatus.OK);
-		
+
 	}
-	
-	@GetMapping(value = "/find")
+
+	@GetMapping(value = "find")
 	@ResponseBody
 	public ResponseEntity<List> findAll(){
 		List listDisciplines = disciplineService.findAll();
 		return new ResponseEntity<List>(listDisciplines, HttpStatus.OK);
-		
+
 	}
-	
+
 	@PostMapping(value = "/signup")
 	@ResponseBody
 	public ResponseEntity<Discipline> create(@RequestBody Discipline discipline) {
@@ -77,7 +77,7 @@ public class DisciplineController {
 		disciplineService.create(discipline);
 		return new ResponseEntity<Discipline>(discipline, HttpStatus.CREATED);
 	}
-	
+
 	//parte do like :
 
 	@PostMapping(value = "/liked")
@@ -85,12 +85,12 @@ public class DisciplineController {
 
 	}
 
-	@PostMapping(value = "/unliked")
+	/*@PostMapping(value = "/unliked")
 	public void Unlike(@RequestBody JSONObject request) throws JSONException {
 		this.disciplineService.unlike(request);
 	}
 
-
+	*/
 
 
 }

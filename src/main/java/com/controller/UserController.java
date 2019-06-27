@@ -22,11 +22,11 @@ import com.model.Usuario;
 import com.service.UserService;
 
 @RestController
-@RequestMapping({ "/v1/users" }) 
+@RequestMapping({ "/v1/users" })
 public class UserController {
 	private UserService userService;
 	private final String TOKEN_KEY = "biscoitocomtoddy"; //para o token do objeto criado 
-	
+
 	public UserController(UserService userService) {
 		this.userService = userService;
 	}
@@ -42,7 +42,7 @@ public class UserController {
 		return new ResponseEntity<Usuario>(user, HttpStatus.OK);
 
 	}
-	
+
 	@PostMapping(value = "/signup")
 	@ResponseBody
 	public ResponseEntity<UserDTO> create(@RequestBody Usuario user) {
@@ -50,16 +50,16 @@ public class UserController {
 			throw new UserExistException("This user already exist!");
 		}
 		Usuario newUser = userService.create(user);
-		
+
 		final String token = Jwts.builder().setSubject(user.getPasswd()).signWith(SignatureAlgorithm.HS512, TOKEN_KEY).
 				setExpiration(new Date(System.currentTimeMillis() + 1 * 60 * 1000))
 				.compact();
-		
+
 		UserDTO userDTO = new UserDTO(newUser.getFirstName(),newUser.getLastName(),newUser.getEmail(), token);
 
 		return new ResponseEntity<UserDTO>(userDTO, HttpStatus.CREATED);
 
 	}
-	
-	
+
+
 }

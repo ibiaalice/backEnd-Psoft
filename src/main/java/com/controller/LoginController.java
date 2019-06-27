@@ -23,30 +23,29 @@ import com.service.UserService;
 @RequestMapping("/v1/auth")
 public class LoginController {
 	private final String TOKEN_KEY = "biscoitocomtoddy";
-	
+
 	@Autowired
 	private UserService userService;
-	
+
 	@PostMapping(value = "/login")
 	@ResponseBody
 	public ResponseEntity<UserDTO> authenticate(@RequestBody Usuario user) throws AuthException {
 		Usuario authUser = (Usuario) userService.findByEmail(user.getEmail());
-		
+
 		if(authUser == null) throw new AuthException("User not found!");
 
 		String passwd = authUser.getPasswd();
-		
+
 		if(!authUser.getPasswd().equals(passwd)) throw new AuthException("Wrong Password!");
-		
+
 		final String token = Jwts.builder().setSubject(authUser.getPasswd()).signWith(SignatureAlgorithm.HS512, TOKEN_KEY).
 				setExpiration(new Date(System.currentTimeMillis() + 1 * 60 * 1000))
 				.compact();
 
 		UserDTO userDTO = new UserDTO(authUser.getFirstName(), authUser.getLastName(), authUser.getEmail(),token);
 		return new ResponseEntity<UserDTO>(userDTO, HttpStatus.FOUND);
-		
-		
+
+
 	}
 
 }
-

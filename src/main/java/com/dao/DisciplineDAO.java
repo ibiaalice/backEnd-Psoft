@@ -19,17 +19,17 @@ import com.model.Discipline;
  */
 @Repository
 public interface DisciplineDAO<T, ID extends Serializable> extends JpaRepository<Discipline, Long> {
-	
+
 	Discipline save(Discipline discipline);
-	
+
 	Discipline findById(long id);
-	
+
 	@Query(value="Select * from discipline d where d.name = :nome", nativeQuery = true)
 	Discipline[] findByName(@Param("nome") String name);
-	
-	//isso pode dar problemão 
-	@Query(value = "SELECT * FROM Discipline d WHERE d.name LIKE concat('%',:substring,'%')",nativeQuery = true)
+
+	//isso pode dar problemão
+	@Query(value = "SELECT d FROM Discipline d WHERE d.name LIKE concat('%',:substring,'%')")
 	List<Discipline> findBySubstring(@Param("substring") String substring);
-		
-		
+
+
 }
