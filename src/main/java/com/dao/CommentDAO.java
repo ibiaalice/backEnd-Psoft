@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 import java.io.Serializable;
 import java.util.List;
 
-
+@Repository
 public interface CommentDAO<T, ID extends Serializable> extends JpaRepository<Comment, Long> {
     Comment save(Comment comment);
 
