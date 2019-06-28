@@ -22,7 +22,8 @@ public class Discipline {
 	@Column(name = "name")
 	private String name;
 
-	@Column(name = "likes")
+	//@Column(name = "likes")
+	@ManyToMany
 	private HashSet<String> userLiked;
 
 	/**
