@@ -6,6 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping({ "/v1/comments" })
 public class CommentController {
@@ -37,6 +39,28 @@ public class CommentController {
         return new ResponseEntity<Comment>(comment, HttpStatus.CREATED);
     }
 
+    @GetMapping(value = "/deleted/{id}")
+    @ResponseBody
+    public ResponseEntity<Comment> deleted(@PathVariable long id){
+        Comment comment = commentService.findById(id);
+
+        comment.setDeleted(true);
+        commentService.create(comment); //atualiza o comentário
+
+        return new ResponseEntity<Comment>(comment, HttpStatus.ACCEPTED);
+    }
+
+
+    //tudo ok até agora
+    @GetMapping(value = "/find/{reference}")
+    @ResponseBody
+    public ResponseEntity<List<Comment>> findByReference(@PathVariable long reference){
+        List idReference = commentService.findByReference(reference);
+
+        return new ResponseEntity<List<Comment>>(idReference, HttpStatus.OK);
+    }
+
+    
 
 
 }
