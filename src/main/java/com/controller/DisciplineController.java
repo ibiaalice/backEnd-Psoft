@@ -86,15 +86,19 @@ public class DisciplineController {
 		String email = like.getEmail();
 
 		Discipline discipline = this.disciplineService.findById(id);
-		if(disciplineService.containsDiscipline(id))
 		this.disciplineService.liked(id, email);
 		return new ResponseEntity<Discipline>(discipline, HttpStatus.CREATED);
 	}
 
 	@PostMapping(value = "likes/unliked")
-	public void Unlike(@RequestBody long id , @RequestBody String email)  {
+	public ResponseEntity<Discipline> Unlike(@RequestBody Like like)  {
+		long id = like.getIdUser();
+		String email = like.getEmail();
 
+		Discipline discipline = this.disciplineService.findById(id);
 		this.disciplineService.unliked(id, email);
+		return new ResponseEntity<Discipline>(discipline, HttpStatus.OK);
+
 	}
 
 

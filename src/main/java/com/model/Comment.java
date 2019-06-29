@@ -21,6 +21,13 @@ public class Comment {
     @Column(name= "Deleted")
     private Boolean deleted;
 
+    public  Comment (){
+        this.deleted = false;
+        this.data = new Date();
+        this.text = "";
+        this.reference = 0;
+    }
+
     public Comment(long reference, String text, String email){
         this.reference = reference;
         this.text = text;

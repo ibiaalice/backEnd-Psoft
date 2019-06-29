@@ -29,12 +29,12 @@ public class CommentController {
     @PostMapping(value = "/create")
     @ResponseBody
     public ResponseEntity<Comment> create(@RequestBody Comment comment) {
-        Comment newComment = commentService.findById(comment.getId());
+      /*  Comment newComment = commentService.findById(comment.getId());
         if (newComment == null) {
             throw new RuntimeException("Comentário não encontrado");
-        }
-        commentService.create(newComment);
-        return new ResponseEntity<Comment>(newComment, HttpStatus.CREATED);
+        }*/
+        commentService.create(comment);
+        return new ResponseEntity<Comment>(comment, HttpStatus.CREATED);
     }
 
 
