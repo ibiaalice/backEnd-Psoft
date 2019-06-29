@@ -23,8 +23,8 @@ public class Discipline {
 	private String name;
 
 	//@Column(name = "likes")
-	@ManyToMany
-	private HashSet<String> userLiked;
+	@ElementCollection(targetClass=String.class)
+	private Set<String> userLiked;
 
 	/**
 	 * Construtor básico da classe Discipline

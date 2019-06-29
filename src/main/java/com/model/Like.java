@@ -3,7 +3,11 @@ package com.model;
 public class Like{
     private String email;
     private long idUser;
-
+    
+    public Like() {
+    	
+    }
+    
     public Like(long id, String email){
         this.email = email;
         this.idUser = id;

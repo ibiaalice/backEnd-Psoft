@@ -86,7 +86,7 @@ public class DisciplineController {
 		String email = like.getEmail();
 
 		Discipline discipline = this.disciplineService.findById(id);
-		if(!disciplineService.containsDiscipline(id))
+		if(disciplineService.containsDiscipline(id))
 		this.disciplineService.liked(id, email);
 		return new ResponseEntity<Discipline>(discipline, HttpStatus.CREATED);
 	}
