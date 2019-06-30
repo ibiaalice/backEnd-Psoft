@@ -8,6 +8,11 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+/**
+ * Repositorio da classe Usuario
+ * @param <T>
+ * @param <ID>
+ */
 @Repository
 public interface UserDAO<T, ID extends Serializable> extends JpaRepository<Usuario, String> {
 	Usuario save(Usuario user);

@@ -1,7 +1,6 @@
 package com.controller;
 
 import java.sql.Date;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,26 +10,36 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import exception.UserExistException;
 import exception.UserNotExistException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-
 import com.model.UserDTO;
 import com.model.Usuario;
 import com.service.UserService;
 
+/**
+ * Classe de controle para a classe Usuario
+ */
 @RestController
 @RequestMapping({ "/v1/users" })
 public class UserController {
 	private UserService userService;
 	private final String TOKEN_KEY = "biscoitocomtoddy"; //para o token do objeto criado 
 
+	/**
+	 * Método construtor da classe
+	 * @param userService
+	 */
 	public UserController(UserService userService) {
 		this.userService = userService;
 	}
 
+	/**
+	 * Método de pesquisa por email
+	 * @param email id da classe Usuario
+	 * @return retorna um objeto com o Usuario do email
+	 */
 	@GetMapping(value = "/{email}")
 	@ResponseBody
 	public ResponseEntity<Usuario> findByEmail(@PathVariable String email) {
@@ -43,6 +52,11 @@ public class UserController {
 
 	}
 
+	/**
+	 * Método de criação do objeto Usuario
+	 * @param user Usuario a ser criado
+	 * @return retorna uma cópía em um objeto UserDTO com os dados públicos da classe Usuario
+	 */
 	@PostMapping(value = "/signup")
 	@ResponseBody
 	public ResponseEntity<UserDTO> create(@RequestBody Usuario user) {

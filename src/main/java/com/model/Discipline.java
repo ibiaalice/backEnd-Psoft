@@ -13,9 +13,7 @@ import java.util.Set;
 @Entity
 @Table(name = "discipline")
 public class Discipline {
-	/**
-	 * Variável de controle, gerada automaticamente
-	 */
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //gera o valor do id
 	private long id;
@@ -61,40 +59,73 @@ public class Discipline {
 	}
 
 	/**
-	 * Método de modificaação do nome da disciplina
+	 * método de retorno da coleção de "likes" da Discipline
+	 * @return retorna uma coleção com emails de quem curtiu
+	 */
+	public Set getUserLikes(){
+		return this.userLiked;
+	}
+
+	/**
+	 * Método de retorno da quantidade de "likes" da Discipline
+	 * @return retorna um inteiro com a quantidade de likes
+	 */
+	public int getNumLikes(){
+		return this.userLiked.size();
+	}
+
+	/**
+	 * Método de modificaação do nome da Discipline
 	 * @param name novo nome a ser recebido.
 	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	public Set getUserLikes(){
-		return this.userLiked;
+
+	//Métodos de like
+
+	/**
+	 * Método de adição de Likes na Discipline
+	 * @param email email a ser adicionado na coleção
+	 * @return retorna um valor em booleano, se foi adicionado a curtida True, caso contrário False
+	 */
+	public boolean liked(String email){
+		return this.userLiked.add(email);
+
 	}
 
-	public int getNumLikes(){
-		return this.userLiked.size();
+	/**
+	 * Método de adição de Likes na Discipline
+	 * @param usuario recebe o usuário que deu Like
+	 * @return retorna um valor booleano, se foi adicionada a curtida True, caso contrário False
+	 */
+	public boolean liked(Usuario usuario){
+		return this.userLiked.add(usuario.getEmail());
 	}
+
+	/**
+	 * Método de remoção de likes na Discipline
+	 * @param email recebe o email do usuário que quer retirar like
+	 * @return retorna um valor booleano, se foi retirada a curtida True, caso contrário False
+	 */
+	public boolean unliked(String email) {
+		return this.userLiked.remove(email);
+	}
+
 
 	@Override
 	public String toString() {
 		return this.id + " - " + this.name;
 	}
 
-
-	//Métodos de like
-
-	public boolean liked(String email){
-		return this.userLiked.add(email);
-
+	@Override
+	public int hashCode() {
+		return super.hashCode();
 	}
 
-	public boolean liked(Usuario usuario){
-		return this.userLiked.add(usuario.getEmail());
-	}
-
-
-	public boolean unliked(String email) {
-		return this.userLiked.remove(email);
+	@Override
+	public boolean equals(Object o) {
+		return super.equals(o);
 	}
 }

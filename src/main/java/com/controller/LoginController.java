@@ -19,6 +19,9 @@ import com.model.Usuario;
 import com.model.UserDTO;
 import com.service.UserService;
 
+/**
+ * Classe de Controle De login
+ */
 @RestController
 @RequestMapping("/v1/auth")
 public class LoginController {
@@ -27,6 +30,12 @@ public class LoginController {
 	@Autowired
 	private UserService userService;
 
+	/**
+	 * Método de login do sistema
+	 * @param user recebe o Usuario para login
+	 * @return retorna uma entidade com cópias do User, com um token
+	 * @throws AuthException um erro de login
+	 */
 	@PostMapping(value = "/login")
 	@ResponseBody
 	public ResponseEntity<UserDTO> authenticate(@RequestBody Usuario user) throws AuthException {

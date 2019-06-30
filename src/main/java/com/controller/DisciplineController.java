@@ -17,6 +17,9 @@ import exception.DisciplineNotFoundException;
 import com.model.*;
 import com.service.DisciplineService;
 
+/**
+ * Classe controlador do Objeto Discipline
+ */
 @RestController
 @RequestMapping({ "/v1/disciplines" })
 public class DisciplineController {
@@ -26,6 +29,13 @@ public class DisciplineController {
 		this.disciplineService = disciplineService;
 	}
 
+	//Métodos de Busca
+
+	/**
+	 * Método de rota para a busca por ID
+	 * @param id recebe o ID da disciplina procurada
+	 * @return retorna um objeto Disciplina
+	 */
 	@GetMapping(value = "/{id}")
 	@ResponseBody
 	public ResponseEntity<Discipline> findById(@PathVariable long id) {
@@ -37,6 +47,11 @@ public class DisciplineController {
 		return new ResponseEntity<Discipline>(discipline, HttpStatus.OK);
 	}
 
+	/**
+	 * Método de rota para a busca pelo nome da Disciplina
+	 * @param name recebe uma String que representa o nome
+	 * @return retorna um objeto Disciplina
+	 */
 	@GetMapping(value = "/nome/{name}")
 	@ResponseBody
 	public ResponseEntity<Discipline> findByName(@PathVariable String name) {
@@ -49,6 +64,11 @@ public class DisciplineController {
 		return new ResponseEntity<Discipline>(discipline, HttpStatus.OK);
 	}
 
+	/**
+	 * Método de rota para a busca pelo nome incompleto da Disciplina
+	 * @param substring recebe uma String que representa o nome
+	 * @return retorna um objeto Disciplina
+	 */
 	@GetMapping(value = "/substring/{substring}")
 	@ResponseBody
 	public ResponseEntity<List> findBySubstring(@PathVariable String substring) {
@@ -58,6 +78,10 @@ public class DisciplineController {
 
 	}
 
+	/**
+	 * Método de rota para a listagem de todos os objetos Discipline criadas
+	 * @return retorna uma lista de elementos Discipline
+	 */
 	@GetMapping(value = "find")
 	@ResponseBody
 	public ResponseEntity<List> findAll(){
@@ -66,6 +90,13 @@ public class DisciplineController {
 
 	}
 
+	//métodos de criação
+
+	/**
+	 * Método de criação do objeto Discipline
+	 * @param discipline recebe o Objeto Discipline a ser criado
+	 * @return retorna uma cópia de Discipline criada
+	 */
 	@PostMapping(value = "/signup")
 	@ResponseBody
 	public ResponseEntity<Discipline> create(@RequestBody Discipline discipline) {
@@ -80,22 +111,35 @@ public class DisciplineController {
 
 	//parte do like :
 
+	/**
+	 * Método de adição do like no objeto Discipline
+	 * @param like recebe um objeto like (apenas representação)
+	 * @return retorna um Objeto Discipline com as atualizações de like já feitos
+	 */
 	@PostMapping(value = "likes/liked") //tomando erro 405
+	@ResponseBody
 	public ResponseEntity<Discipline>like(@RequestBody Like like) {
 		long id = like.getIdUser();
 		String email = like.getEmail();
 
 		Discipline discipline = this.disciplineService.findById(id);
-		this.disciplineService.liked(id, email);
-		return new ResponseEntity<Discipline>(discipline, HttpStatus.CREATED);
+		discipline.liked(email);
+		disciplineService.create(discipline);
+		return new ResponseEntity<Discipline>(discipline, HttpStatus.OK);
 	}
 
+	/**
+	 * Método de remoção de like no objeto Discipline
+	 * @param like recebe um objeto like (apenas representação)
+	 * @return retorn um objeto Discipline com as atualizações de unlike já feita
+	 */
 	@PostMapping(value = "likes/unliked")
+	@ResponseBody
 	public ResponseEntity<Discipline> Unlike(@RequestBody Like like)  {
 		long id = like.getIdUser();
 		String email = like.getEmail();
 
-		Discipline discipline = this.disciplineService.findById(id);
+		Discipline discipline = disciplineService.findById(id);
 		this.disciplineService.unliked(id, email);
 		return new ResponseEntity<Discipline>(discipline, HttpStatus.OK);
 
