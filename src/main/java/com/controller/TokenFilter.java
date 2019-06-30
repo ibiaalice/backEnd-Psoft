@@ -4,16 +4,14 @@ import org.springframework.web.filter.GenericFilterBean;
 
 
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.SignatureException;
-import com.service.UserService;
-
 import java.io.IOException;
-
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 
-
+/**
+ * Classe de geração do Token
+ */
 public class TokenFilter extends GenericFilterBean  {
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
