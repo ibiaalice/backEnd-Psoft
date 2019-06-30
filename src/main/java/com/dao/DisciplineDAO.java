@@ -47,7 +47,7 @@ public interface DisciplineDAO<T, ID extends Serializable> extends JpaRepository
 	 * @param substring substring a ser procurada
 	 * @return retorna uma lista de Discipline que possuem a substring no nome
 	 */
-	@Query(value = "SELECT d FROM Discipline d WHERE d.name LIKE '%substring%' ")
+	@Query(value = "SELECT d FROM Discipline d WHERE d.name LIKE concat('%',:substring,'%' )")
 	List<Discipline> findBySubstring(@Param("substring") String substring);
 
 

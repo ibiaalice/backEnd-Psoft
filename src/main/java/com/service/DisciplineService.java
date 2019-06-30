@@ -50,7 +50,7 @@ public class DisciplineService {
 	 * @return retorna a copia da classe
 	 */
 	public Discipline create(Discipline discipline) {
-		return (Discipline) disciplineDAO.save(discipline);
+		return disciplineDAO.save(discipline);
 	}
 
 	//Métodos de busca
@@ -80,10 +80,8 @@ public class DisciplineService {
 	 * @param substring recebe o nome a ser procurado
 	 * @return retorna a copia da disciplina encontrada
 	 */
-	public List findBySubstring(String substring) {
-		List<Discipline> disciplines = disciplineDAO.findBySubstring(substring);
-
-		return disciplines;
+	public List<Discipline> findBySubstring(String substring) {
+		return  disciplineDAO.findBySubstring(substring);
 	}
 
 	/**
