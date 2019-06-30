@@ -28,6 +28,10 @@ public class Usuario {
 		this.passwd = passwd;
 
 	}
+	
+	public Usuario() {
+		
+	}
 
 	/**
 	 * Método get do primeiro nome
