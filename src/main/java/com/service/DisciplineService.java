@@ -150,6 +150,18 @@ public class DisciplineService {
 		return disciplineDAO.save(discipline); //atualizando no bd
 	}
 
+	/**
+	 * Método para verificar se o usuário curtiu a disciplina
+	 * @param id id da disciplina
+	 * @param email email do usuário
+	 * @return retorna um verdadeiro ou falso
+	 */
+	public boolean containsLike(long id, String email) {
+		Discipline discipline = disciplineDAO.findById(id);
+
+		return discipline.containsLike(email);
+	}
+
 	//métodos usados ocasionalmente
 
 	/**
@@ -173,6 +185,5 @@ public class DisciplineService {
 		for(int i = 0; i < list.size(); i++)
 			this.create(new Discipline(list.get(i)));
 	}
-
 
 }

@@ -113,6 +113,14 @@ public class Discipline {
 		return this.userLiked.remove(email);
 	}
 
+	/**
+	 * Método de confirmação se o usuário curtiu ou n a disciplina
+	 * @param email email do usuário
+	 * @return um verdadeiro ou falso
+	 */
+	public boolean containsLike(String email) {
+		return this.userLiked.contains(email);
+	}
 
 	@Override
 	public String toString() {
@@ -128,4 +136,6 @@ public class Discipline {
 	public boolean equals(Object o) {
 		return super.equals(o);
 	}
+
+
 }
