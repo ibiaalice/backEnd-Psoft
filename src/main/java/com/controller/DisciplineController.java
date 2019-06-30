@@ -148,15 +148,15 @@ public class DisciplineController {
 	/**
 	 * Método de verificação se o usuário curtiu ou não a disciplina
 	 * @param like conjunto de id da disciplina + email do usuario
-	 * @return retorna um objeto verdadeiro ou falso 
+	 * @return retorna um objeto verdadeiro ou falso
 	 */
 	@PostMapping(value = "likes/{email}")
 	@ResponseBody
 	public ResponseEntity<Boolean> containsLike(@RequestBody Like like){
 		long id = like.getIdUser();
 		String email = like.getEmail();
-
-		boolean containsLike = disciplineService.containsLike(id, email);
+		Discipline disc = disciplineService.findById(id);
+		boolean containsLike = disc.containsLike(email);
 
 		return new ResponseEntity<Boolean>(containsLike, HttpStatus.OK);
 
