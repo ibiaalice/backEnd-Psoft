@@ -1,7 +1,9 @@
 package com.controller;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 
+import org.apache.tomcat.util.json.ParseException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -162,6 +164,14 @@ public class DisciplineController {
 
 	}
 
+
+	@GetMapping(value = "saveAll")
+	@ResponseBody
+	public ResponseEntity<String> saveAll() throws FileNotFoundException, ParseException {
+
+		disciplineService.saveAll();
+		return new ResponseEntity<String>("deu bom",HttpStatus.OK);
+	}
 
 
 
