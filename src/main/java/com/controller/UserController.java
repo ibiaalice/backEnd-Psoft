@@ -1,6 +1,9 @@
 package com.controller;
 
 import java.sql.Date;
+
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,9 +21,7 @@ import com.model.UserDTO;
 import com.model.Usuario;
 import com.service.UserService;
 
-/**
- * Classe de controle para a classe Usuario
- */
+@Api(value="Classe de controle para a classe Usuario")
 @RestController
 @RequestMapping({ "/v1/users" })
 public class UserController {
@@ -35,11 +36,7 @@ public class UserController {
 		this.userService = userService;
 	}
 
-	/**
-	 * Método de pesquisa por email
-	 * @param email id da classe Usuario
-	 * @return retorna um objeto com o Usuario do email
-	 */
+	@ApiOperation(value= "Método de pesquisa por email")
 	@GetMapping(value = "/{email}")
 	@ResponseBody
 	public ResponseEntity<Usuario> findByEmail(@PathVariable String email) {
@@ -52,11 +49,7 @@ public class UserController {
 
 	}
 
-	/**
-	 * Método de criação do objeto Usuario
-	 * @param user Usuario a ser criado
-	 * @return retorna uma cópía em um objeto UserDTO com os dados públicos da classe Usuario
-	 */
+	@ApiOperation(value="Método de criação do objeto Usuario")
 	@PostMapping(value = "/signup")
 	@ResponseBody
 	public ResponseEntity<UserDTO> create(@RequestBody Usuario user) {

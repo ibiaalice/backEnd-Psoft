@@ -1,5 +1,6 @@
 package com.controller;
 
+import io.swagger.annotations.Api;
 import org.springframework.web.filter.GenericFilterBean;
 
 
@@ -9,9 +10,7 @@ import java.io.IOException;
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 
-/**
- * Classe de geração do Token
- */
+@Api(value="Classe de geração do Token")
 public class TokenFilter extends GenericFilterBean  {
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)

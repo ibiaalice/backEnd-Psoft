@@ -2,6 +2,8 @@ package com.controller;
 
 import java.sql.Date;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,9 +21,7 @@ import com.model.Usuario;
 import com.model.UserDTO;
 import com.service.UserService;
 
-/**
- * Classe de Controle De login
- */
+@Api(value = "Classe de Controle De login")
 @RestController
 @RequestMapping("/v1/auth")
 public class LoginController {
@@ -30,12 +30,7 @@ public class LoginController {
 	@Autowired
 	private UserService userService;
 
-	/**
-	 * Método de login do sistema
-	 * @param user recebe o Usuario para login
-	 * @return retorna uma entidade com cópias do User, com um token
-	 * @throws AuthException um erro de login
-	 */
+	@ApiOperation(value="Método de login do sistema")
 	@PostMapping(value = "/login")
 	@ResponseBody
 	public ResponseEntity<UserDTO> authenticate(@RequestBody Usuario user) throws AuthException {
