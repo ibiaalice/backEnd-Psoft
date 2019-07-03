@@ -32,8 +32,8 @@ public class SwaggerBootConfig {
     // Describe your apis
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("Swagger Sample APIs")
-                .description("This page lists all the rest apis for Swagger Sample App.")
+                .title("Project PSOFT")
+                .description("esta página lista todas as rotas públicas.")
                 .version("1.0-SNAPSHOT")
                 .build();
     }
