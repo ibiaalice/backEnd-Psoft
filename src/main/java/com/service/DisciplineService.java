@@ -19,19 +19,17 @@ import com.model.Discipline;
 public class DisciplineService {
 
 	private final DisciplineDAO disciplineDAO;
-	private final CommentDAO commentDAO;
 
 	/**
 	 * Método de construção da classe
 	 * @param disciplineDAO
-	 * @param commentDAO
 	 */
 	public DisciplineService(DisciplineDAO disciplineDAO, CommentDAO commentDAO)  {
 
 		this.disciplineDAO = disciplineDAO;
-		this.commentDAO = commentDAO;
+
 		//this.deleteAll();
-		try {
+		/*try {
 			this.saveAll();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -39,7 +37,7 @@ public class DisciplineService {
 			e.printStackTrace();
 		} catch (JSONException e) {
 			e.printStackTrace();
-		}
+		}*/
 
 	}
 
@@ -182,7 +180,6 @@ public class DisciplineService {
 
 		for(int i = 0; i < list.size(); i++){
 			this.create(new Discipline(list.get(i)));
-			this.commentDAO.save(new Comment());
 		}
 	}
 
